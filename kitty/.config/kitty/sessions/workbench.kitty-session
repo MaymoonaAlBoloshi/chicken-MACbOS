@@ -1,0 +1,6 @@
+# General scratch workspace.
+layout tall
+cd ~
+launch --title main
+launch --title side
+focus_tab 0

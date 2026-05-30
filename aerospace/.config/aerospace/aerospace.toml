@@ -1,0 +1,85 @@
+# AeroSpace config for a Linux-like tiling workflow on macOS.
+# Docs: https://nikitabobko.github.io/AeroSpace/guide
+
+config-version = 2
+start-at-login = true
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+automatically-unhide-macos-hidden-apps = true
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 12
+outer.bottom = 12
+outer.top = 12
+outer.right = 12
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 4'
+
+[mode.main.binding]
+cmd-enter = 'exec-and-forget open -na /Applications/kitty.app'
+
+cmd-q = 'close'
+cmd-f = 'macos-native-fullscreen'
+cmd-shift-f = 'fullscreen'
+cmd-shift-space = 'layout floating tiling'
+
+cmd-h = 'focus left'
+cmd-j = 'focus down'
+cmd-k = 'focus up'
+cmd-l = 'focus right'
+
+cmd-shift-h = 'move left'
+cmd-shift-j = 'move down'
+cmd-shift-k = 'move up'
+cmd-shift-l = 'move right'
+
+cmd-v = 'split vertical'
+cmd-shift-v = 'split horizontal'
+
+cmd-1 = 'workspace 1'
+cmd-2 = 'workspace 2'
+cmd-3 = 'workspace 3'
+cmd-4 = 'workspace 4'
+cmd-5 = 'workspace 5'
+cmd-6 = 'workspace 6'
+cmd-7 = 'workspace 7'
+cmd-8 = 'workspace 8'
+cmd-9 = 'workspace 9'
+cmd-0 = 'workspace 10'
+
+cmd-shift-1 = 'move-node-to-workspace 1'
+cmd-shift-2 = 'move-node-to-workspace 2'
+cmd-shift-3 = 'move-node-to-workspace 3'
+cmd-shift-4 = 'move-node-to-workspace 4'
+cmd-shift-5 = 'move-node-to-workspace 5'
+cmd-shift-6 = 'move-node-to-workspace 6'
+cmd-shift-7 = 'move-node-to-workspace 7'
+cmd-shift-8 = 'move-node-to-workspace 8'
+cmd-shift-9 = 'move-node-to-workspace 9'
+cmd-shift-0 = 'move-node-to-workspace 10'
+
+cmd-shift-c = 'reload-config'
+cmd-shift-w = 'exec-and-forget /Users/maymoonabalushi/bin/irvue-wal-sync.sh'

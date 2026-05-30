@@ -1,0 +1,110 @@
+# Adjust all fg colors toward white/black until contrast ratio is met.
+# 0=off, 50=WCAG AA (4.5:1), ~78=WCAG AAA (7:1), 100=(9:1), 234+=pure B/W.
+# Applies to both section-derived and explicit {fmt.fg.*} colors.
+# auto_contrast=170
+auto_contrast=50
+
+# Bias contrast between dark-on-light and light-on-dark.
+# Dark-on-light target is multiplied by this; light-on-dark is divided by it.
+# Compensates for subpixel rendering and perceptual asymmetry.
+# 1.0=symmetric, 1.5=dark-on-light targets 50% more, light-on-dark 33% less.
+contrast_bias=1.4
+
+# Shift the darken-vs-lighten crossover point.
+# >1 prefers darkening fg (black pole) even on mid-gray backgrounds.
+# <1 prefers lightening fg (white pole). 1.0=natural crossover (~bg 118).
+pole_bias=1.2
+
+[tab]
+# 'format' uses Python's str.format() mini-language.
+#
+# Text placeholders:
+#   {n}              tab number         {n:03d} for zero-padded
+#   {nu}             tab number in superscript (⁰¹²³⁴⁵⁶⁷⁸⁹)
+#   {t}              tab title
+#   {exe}            foreground process name (e.g. "vim", "python3")
+#
+# Kitty color/style placeholders (same as tab_title_template):
+#   {fmt.fg.red}     named foreground   any CSS/X11 color name
+#   {fmt.fg._FF0000} hex foreground     _ stands for #
+#   {fmt.fg.tab}     tab's own fg       active or inactive as appropriate
+#   {fmt.fg.default} terminal default fg
+#   {fmt.bg.*}       background variants of all the above
+#   {fmt.bold}       bold on            {fmt.nobold} bold off
+#   {fmt.italic}     italic on          {fmt.noitalic} italic off
+#   {fmt.reset}      reset all attributes
+#
+# Custom escape:
+#   %P               padding distribution point (can appear more than once;
+#                    total padding is split evenly across all %P markers)
+#   %%               literal %
+#
+# [background] and [foreground] section colors only apply where
+# {fmt.fg.tab}/{fmt.bg.tab} (or no explicit color) is in effect.
+#
+# Examples:
+#   "{t}%P"                                        title left, padding right
+#   "%P{t}%P"                                      centered title
+#   "{fmt.fg._444444}{n:03d}){fmt.fg.tab} {t}%P"  dimmed tab number, then title
+#   "%P{fmt.bold}{t}{fmt.nobold}%P"                centered bold title
+# format="{fmt.fg._444444}{nu}{fmt.fg.tab} {t}%P"
+format="{t}"
+
+# padding is reduced dynamically when tabs exceed the OS window width
+[pad]
+# pad tabs using char so that they're this wide
+ideal_width=12
+# character to pad with
+char=" "
+
+# Colors below use kitty color syntax: named (red), hex (#FF0000), or empty
+# to fall back to kitty's default tab colors. These section colors only apply
+# where the tab format hasn't set an explicit color override.
+
+[background]
+type="solid"    # "gradient" or "solid"
+ramp_min=0         # gradient spans at least this many steps; 0 = no minimum
+ramp_max=0         # gradient spans at most this many steps; 0 = no limit
+curve="linear"     # "linear" or "pow"
+exponent=0.6       # only used when curve="pow"
+active_color="#1d2f8f"    # e.g. "#1a1a2e", "gray30", or "" for kitty default
+inactive_color="#071039"  # e.g. "#0a0a0a", or "" for kitty default
+#
+# "rgb" interpolates linearly in sRGB (matches old behavior).
+# "oklch" interpolates in OKLCH (perceptual lightness/chroma/hue), giving
+# smooth, monotonic lightness ramps and vivid hue transitions — useful when
+# active_color and inactive_color have different hues (e.g. green→blue).
+# 
+# interpolation="rgb"
+
+## Green->Blue
+# active_color="#22cc55"
+# inactive_color="#2244cc"
+
+## Bright Late
+# active_color="#fc9a3f"
+# inactive_color="#613710"
+
+## Late Late
+# active_color="#B8782C"
+# inactive_color="2E261F"
+
+# B8782C
+# 44382E
+
+
+interpolation="oklch"
+
+[foreground]
+type="solid"       # "gradient" or "solid"
+active_color="#f3f5ff"    # e.g. "#ffffff", "white", or "" for kitty default
+inactive_color="#8c98d8"  # e.g. "#888888", or "" for kitty default
+ramp_min=0         # gradient spans at least this many steps; 0 = no minimum
+ramp_max=0         # gradient spans at most this many steps; 0 = no limit
+curve="linear"     # "linear" or "pow"
+exponent=0.5       # only used when curve="pow"
+interpolation="rgb"  # "rgb" or "oklch" — see [background] for details
+
+[log]
+file="/tmp/tabbykat.log"            # e.g. "/tmp/tabbykat.log"; empty = logging off
+level="off"        # "off", "error", "warn", "info", "debug"
