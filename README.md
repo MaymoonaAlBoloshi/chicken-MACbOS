@@ -1,4 +1,13 @@
-# chicken MACbOS / my dotfiles on mac
+<div align="center" style="display: flex; align-items: center; gap: 16px;">
+  <h1>chicken MACbOS / my dotfiles on mac</h1>
+
+  <img
+    width="122"
+    height="80"
+    alt="image"
+    src="https://github.com/user-attachments/assets/419bd15b-a84c-468f-9d03-15e69ddbaeff"
+  />
+</div>
 
 macOS dotfiles for a Linux-like tiling, bar, terminal, and wallpaper-themed workflow.
 <img width="2584" height="1446" alt="image" src="https://github.com/user-attachments/assets/e5831b79-0edb-4402-a7a8-93c12e25251c" />
