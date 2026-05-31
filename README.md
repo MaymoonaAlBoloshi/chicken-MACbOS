@@ -9,10 +9,10 @@
   />
 </div>
 
-macOS dotfiles for a Linux-like tiling, bar, terminal, and wallpaper-themed workflow. ( vim is running on monikai retro not auto themeing it )
-<img width="2584" height="1446" alt="image" src="https://github.com/user-attachments/assets/e5831b79-0edb-4402-a7a8-93c12e25251c" />
+macOS dotfiles for a Linux-like tiling, bar, terminal, and wallpaper-themed workflow. note btop is not auto themed for nwo
 
-note btop is not auto themed for nwo
+<img width="2580" height="1446" alt="image" src="https://github.com/user-attachments/assets/cef71c87-8230-4886-9283-cf78b9639205" />
+<img width="2580" height="1446" alt="image" src="https://github.com/user-attachments/assets/471506d6-a2e8-44d8-b513-994450ac7c7a" />
 <img width="2580" height="1446" alt="image" src="https://github.com/user-attachments/assets/9e52b097-55ca-4112-9a71-c9bede1cdbe0" />
 
 ## Modules
