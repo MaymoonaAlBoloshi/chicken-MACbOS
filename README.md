@@ -1,6 +1,7 @@
-# dotfiles-mac
+# chicken MACbOS / my dotfiles on mac
 
 macOS dotfiles for a Linux-like tiling, bar, terminal, and wallpaper-themed workflow.
+<img width="2584" height="1446" alt="image" src="https://github.com/user-attachments/assets/e5831b79-0edb-4402-a7a8-93c12e25251c" />
 
 ## Modules
 
