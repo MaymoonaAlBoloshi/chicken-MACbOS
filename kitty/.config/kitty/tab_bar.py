@@ -114,7 +114,8 @@ else:
 # ---------------------------------------------------------------------------
 
 _home = os.path.expanduser('~')
-_config_path = Path(__file__).with_suffix('.toml')
+_wal_config_path = Path(_home) / '.cache' / 'wal' / 'kitty-tab-bar.toml'
+_config_path = _wal_config_path if _wal_config_path.exists() else Path(__file__).with_suffix('.toml')
 
 RIGHT_ARROW = '\ue0b0'
 LEFT_ARROW = '\ue0b2'

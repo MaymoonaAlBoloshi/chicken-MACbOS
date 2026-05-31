@@ -1,85 +1,100 @@
-# AeroSpace config for a Linux-like tiling workflow on macOS.
-# Docs: https://nikitabobko.github.io/AeroSpace/guide
-
 config-version = 2
 start-at-login = true
 
+after-startup-command = ['exec-and-forget borders']
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 
-automatically-unhide-macos-hidden-apps = true
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+on-mode-changed = []
+
+[workspace-to-monitor-force-assignment]
+    # Laptop open + monitor: 1 on built-in/main, 2 on external.
+    # Laptop closed or single display: fall back to the only/main display.
+    1 = ['built-in', 'main']
+    2 = ['secondary', 'main']
+
+[key-mapping]
+    preset = 'qwerty'
 
 [gaps]
-inner.horizontal = 8
-inner.vertical = 8
-outer.left = 12
-outer.bottom = 12
-outer.top = 12
-outer.right = 12
+    inner.horizontal = 8
+    inner.vertical = 8
+    outer.left = 12
+    outer.bottom = 12
+    outer.top = [{ monitor.main = 6 }, 36]
+    outer.right = 12
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Terminal'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 4'
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
 
 [mode.main.binding]
-cmd-enter = 'exec-and-forget open -na /Applications/kitty.app'
+    alt-enter = 'exec-and-forget open -na /Applications/kitty.app'
 
-cmd-q = 'close'
-cmd-f = 'macos-native-fullscreen'
-cmd-shift-f = 'fullscreen'
-cmd-shift-space = 'layout floating tiling'
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
 
-cmd-h = 'focus left'
-cmd-j = 'focus down'
-cmd-k = 'focus up'
-cmd-l = 'focus right'
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
 
-cmd-shift-h = 'move left'
-cmd-shift-j = 'move down'
-cmd-shift-k = 'move up'
-cmd-shift-l = 'move right'
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
 
-cmd-v = 'split vertical'
-cmd-shift-v = 'split horizontal'
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
 
-cmd-1 = 'workspace 1'
-cmd-2 = 'workspace 2'
-cmd-3 = 'workspace 3'
-cmd-4 = 'workspace 4'
-cmd-5 = 'workspace 5'
-cmd-6 = 'workspace 6'
-cmd-7 = 'workspace 7'
-cmd-8 = 'workspace 8'
-cmd-9 = 'workspace 9'
-cmd-0 = 'workspace 10'
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
 
-cmd-shift-1 = 'move-node-to-workspace 1'
-cmd-shift-2 = 'move-node-to-workspace 2'
-cmd-shift-3 = 'move-node-to-workspace 3'
-cmd-shift-4 = 'move-node-to-workspace 4'
-cmd-shift-5 = 'move-node-to-workspace 5'
-cmd-shift-6 = 'move-node-to-workspace 6'
-cmd-shift-7 = 'move-node-to-workspace 7'
-cmd-shift-8 = 'move-node-to-workspace 8'
-cmd-shift-9 = 'move-node-to-workspace 9'
-cmd-shift-0 = 'move-node-to-workspace 10'
+    alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+    alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+    alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+    alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+    alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+    alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+    alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+    alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+    alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+    alt-shift-0 = ['move-node-to-workspace 10', 'workspace 10']
 
-cmd-shift-c = 'reload-config'
-cmd-shift-w = 'exec-and-forget /Users/maymoonabalushi/bin/irvue-wal-sync.sh'
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    alt-f = 'fullscreen'
+    alt-shift-space = 'layout floating tiling'
+    alt-q = 'close'
+
+    alt-shift-semicolon = 'mode service'
+    alt-shift-c = 'reload-config'
+
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main']
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']

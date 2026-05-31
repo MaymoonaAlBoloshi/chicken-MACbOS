@@ -10,7 +10,6 @@ macOS dotfiles for a Linux-like tiling, bar, terminal, and wallpaper-themed work
 - `wal`: pywal hooks
 - `zsh`: shell config and Powerlevel10k prompt config
 - `bin`: helper scripts
-- `launchagents`: background wal sync for wallpaper changes
 
 ## Install
 
@@ -18,8 +17,6 @@ From this directory:
 
 ```sh
 stow aerospace sketchybar kitty wal zsh bin
-cp launchagents/Library/LaunchAgents/com.maymoona.wal-sync.plist ~/Library/LaunchAgents/
-launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/com.maymoona.wal-sync.plist
 ```
 
 ## New Mac Bootstrap
@@ -51,21 +48,19 @@ cd ~
 git clone <your-github-url>/dotfiles-mac.git
 cd dotfiles-mac
 stow aerospace sketchybar kitty wal zsh bin
-cp launchagents/Library/LaunchAgents/com.maymoona.wal-sync.plist ~/Library/LaunchAgents/
 ```
 
 Start services and apps:
 
 ```sh
 brew services start sketchybar
-launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/com.maymoona.wal-sync.plist
 open -a AeroSpace
 ```
 
 Then in macOS System Settings:
 
 - Give AeroSpace Accessibility permissions.
-- Give `/bin/bash` Full Disk Access if you want the wal LaunchAgent to read Irvue wallpapers in the app container.
+- Give your terminal/AeroSpace permission to control System Events if macOS asks when using the wallpaper hotkey.
 - Enable menu bar auto-hide.
 - Confirm AeroSpace starts at login.
 - Set keyboard, trackpad, Mission Control, and Dock preferences.
@@ -88,4 +83,10 @@ The wal sync script can be run manually at any time:
 ~/bin/irvue-wal-sync.sh --force
 ```
 
-The LaunchAgent runs the same script every five minutes and no-ops when the detected wallpaper has not changed.
+To switch to the next Irvue wallpaper and immediately sync colors:
+
+```sh
+~/bin/irvue-next-wal.sh
+```
+
+AeroSpace binds this to `cmd+shift+w`.
